@@ -30,6 +30,7 @@ exports.login = async (req, res) => {
 	if(user === null){
 		return res.status(404).json({message: 'user not found'})
 	}else {
+		console.log(user);
 		const valid = await bcrypt.compare(req.body.password, user.password)
 		if(!valid){
 			return res.status(401).json({ error: new Error('Not Authorized') })
