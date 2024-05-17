@@ -46,6 +46,43 @@ function displayWorks() {
 
 }
 
-
-
+// Séléction de la section 'portfolio' et de l'élément 'h2'
+const portfolioSection = document.getElementById('portfolio');
+const h2Element = portfolioSection.querySelector('h2');
+  
+// Création du bouton 'Tous' et ajout d'un écouteur d'événements
+const buttonAll = document.createElement('button');
+buttonAll.textContent = 'Tous';
+buttonAll.addEventListener('click', () => filterWorks(0));
+    
+portfolioSection.insertBefore(buttonAll, h2Element.nextSibling);
+  
+// Fonction pour filtrer et afficher les travaux
+function filterWorks(categoryId) {
+    const gallery = portfolioSection.querySelector('.gallery');
+    gallery.innerHTML = ''; // Nettoyer la galerie
+  
+    const filteredWorks = categoryId === 0 ? works : works.filter(work => work.category.id === categoryId);
+  
+    filteredWorks.forEach(work => {
+        const img = document.createElement('img');
+        img.src = work.imageUrl;
+        img.alt = work.title;
+        gallery.appendChild(img);
+    });
+}
+  
+// création des boutons de filtre de manière dynamique
+const categories = Array.from(new Set(works.map(work => work.category.id)))
+    .map(id => works.find(work => work.category.id === id).category);
+  
+categories.forEach(category => {
+    const button = document.createElement('button');
+    button.textContent = category.name;
+    button.dataset.categoryId = category.id;
+    button.addEventListener('click', () => filterWorks(category.id));
+    portfolioSection.insertBefore(button, h2Element.nextSibling.nextSibling);
+});
+  
+filterWorks(0);
 displayWorks(works);
