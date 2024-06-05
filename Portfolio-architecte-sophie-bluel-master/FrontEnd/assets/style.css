@@ -118,6 +118,20 @@ li:hover {
 	margin-bottom: 1em;
 }
 
+#portfolio button {
+	border-radius: 20px;
+	color: #1D6154;
+	background-color: white;
+	border: solid, 4px, #1D6154;
+	padding: 10px 20px;
+	font-family: 'Syne';
+	align-items: center;
+	margin-bottom: 3em;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
 #introduction p {
 	margin-bottom: 0.5em;
 }
