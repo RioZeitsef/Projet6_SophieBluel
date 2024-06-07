@@ -13,6 +13,8 @@ function getWorks() {
 
     function createButton(text, onClick) {
         const button = document.createElement('button');
+        let divButton = document.createElement('div');
+        divButton.classList.add('button');
         button.textContent = text;
         button.addEventListener('click', onClick);
         return button;
@@ -21,8 +23,12 @@ function getWorks() {
     function createCategorieButton(categories) {
         const portfolioSection = document.getElementById('portfolio');
         const h2Element = portfolioSection.querySelector('h2');
+        const buttonsDiv = document.createElement('div');
+        buttonsDiv.setAttribute('id', 'catergories-buttons');
+        portfolioSection.insertBefore(buttonsDiv, h2Element.nextSibling);
+
         const buttonAll = createButton('Tous', () => displayWorks(filterWorks(0)));
-        portfolioSection.insertBefore(buttonAll, h2Element.nextSibling);
+        buttonsDiv.appendChild(buttonAll);
 
         function filterWorks(categoryId) {
             return categoryId === 0 ? _works : _works.filter(work => work.category.id === categoryId);
@@ -30,8 +36,9 @@ function getWorks() {
 
     categories.forEach(category => {
         const button = createButton(category.name, () => displayWorks(filterWorks(category.id)));
-        portfolioSection.insertBefore(button, h2Element.nextSibling.nextSibling);
+        buttonsDiv.appendChild(button);    
     });
+
 }        
 
 function initCategories(works) {
