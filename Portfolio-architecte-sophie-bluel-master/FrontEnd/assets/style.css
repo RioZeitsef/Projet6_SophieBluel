@@ -88,13 +88,20 @@ nav ul {
 	display: flex;
 	align-items: center;
 	list-style-type: none;
-
+	cursor: pointer;
 }
 nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
 }
+li a {
+	text-decoration: none;
+	color: black;
+}
 
+li a:hover {
+	color: #B1663C;
+}
 li:hover {
 	color: #B1663C;
 }
@@ -118,18 +125,34 @@ li:hover {
 	margin-bottom: 1em;
 }
 
-#portfolio button {
+#categories-buttons {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 3em;
+	padding-top: 15px;
+}
+
+.buttonBase {
 	border-radius: 20px;
 	color: #1D6154;
 	background-color: white;
-	border: solid, 4px, #1D6154;
-	padding: 10px 20px;
+	border: solid 1px #1D6154;
+	padding: 6px 10px;
 	font-family: 'Syne';
-	align-items: center;
-	margin-bottom: 3em;
-	display: flex;
-	flex-direction: row;
 	justify-content: center;
+	min-width: 90px;
+	margin: 5px;
+}
+
+.buttonBase[data-active="true"] {
+	background-color: #1D6154;
+	color: white;
+}
+
+#categories-buttons button:hover {
+	cursor: pointer;
+	background-color: #1D6154;
+	color: white;
 }
 
 #introduction p {

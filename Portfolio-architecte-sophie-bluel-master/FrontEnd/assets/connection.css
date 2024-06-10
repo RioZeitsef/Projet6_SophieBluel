@@ -1,0 +1,23 @@
+main {
+    background-color: #FFFEF8;
+}
+
+#connection-id {
+    padding-bottom: 30px;
+}
+
+label {
+    padding-bottom: 5px;
+}
+
+.connection-div {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+    margin: auto;
+}
+
+.connection-div form {
+	display: flex;
+	flex-direction: column;
+}
