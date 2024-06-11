@@ -1,7 +1,21 @@
-main {
-    background-color: #FFFEF8;
+body {
+	background-color: #FFFEF8;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
 }
 
+main {
+	flex: 1;
+}
+
+footer nav ul {
+	background-color: #FFFF;
+	width: 100%;
+	margin: 0px;
+	padding: 20px;	
+}
 #connection-id {
     padding-bottom: 30px;
 }
@@ -14,6 +28,7 @@ label {
 	display: flex;
 	align-items: center;
 	flex-direction: column;
+	max-height: 100%;
     margin: auto;
 }
 
@@ -21,3 +36,21 @@ label {
 	display: flex;
 	flex-direction: column;
 }
+
+form a {
+	margin: auto;
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+form input {
+	margin-bottom: 20px;
+	padding: 5px;
+	width: 300px;
+	height: 35px;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+
+}
+
+
