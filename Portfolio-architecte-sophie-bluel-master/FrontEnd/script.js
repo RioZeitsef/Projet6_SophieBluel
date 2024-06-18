@@ -14,17 +14,13 @@ function getWorks() {
     function createButton(text, onClick) {
         const button = document.createElement('button');
         button.setAttribute('class', 'buttonBase')
-        const buttonsColor = document.querySelectorAll('buttonBase');
         let divButton = document.createElement('div');
         divButton.classList.add('button');
-        button.textContent = text;
-        button.addEventListener('click', onClick, () => {
-            buttonsColor.forEach(btn => btn.setAttribute('data-active', 'false'));
-            button.setAttribute('data-active', 'true');       
-        });     
+        button.textContent = text;  
+        button.addEventListener('click', onClick);
         return button;
     }
-    
+
     // const buttonsColor = document.querySelectorAll('.buttonBase');
 
     // buttonsColor.forEach(button => {
@@ -40,7 +36,6 @@ function getWorks() {
         const buttonsDiv = document.createElement('div');
         buttonsDiv.setAttribute('id', 'categories-buttons');
         portfolioSection.insertBefore(buttonsDiv, h2Element.nextSibling);
-
         const buttonAll = createButton('Tous', () => displayWorks(filterWorks(0)));
         buttonsDiv.appendChild(buttonAll);
 
@@ -62,7 +57,7 @@ function initCategories(works) {
 }    
 
 
-function displayWorks(listWorks) {
+function displayWorks(listWorks, categoryId) {
     const gallery = document.querySelector('#portfolio .gallery');
     gallery.innerHTML = '';
     listWorks.forEach(work => {
@@ -71,15 +66,15 @@ function displayWorks(listWorks) {
         img.src = work.imageUrl;
         img.alt = work.title;
         const figcaption = document.createElement('figcaption');
-        figcaption.textContent = work.title;
-
+        figcaption.textContent = work.title; 
+        
         figure.appendChild(img);
         figure.appendChild(figcaption);
         gallery.appendChild(figure);
-    });
-}
+        });
 
-// Changement de couleurs des boutons au click
-
+    };
 
 getWorks();
+
+   
