@@ -44,8 +44,18 @@ crossorigin="anonymous"
 	<section id="portfolio">
         <div class="line-project">
 		    <h2 id="titleProject" class="replace-title">Mes Projets</h2>
-            <p class="modify"><i class="fa-regular fa-pen-to-square"></i>Modifier</p>
+            <a class="modify" href="#modal1" class="js-modal"><i class="fa-regular fa-pen-to-square"></i>Modifier</a>
         </div>
+		<aside id="modal1" class="modal" aria-hidden="true" style="display:none">
+			<div class="modal-wrapper">
+				<button class="js-modal-close">x</button>
+				<h3>Galerie Photos</h3>
+				<div>
+
+				</div>
+				<button class="js-modal-addPhotos">Ajouter une photo</button>
+			</div>
+		</aside>
 		<div class="gallery">
 		</div>
 	</section>

@@ -176,6 +176,8 @@ li:hover {
 	position: relative;
 	top: 10px;
 	left: 35px;
+	text-decoration: none;
+	color: black;
 }
 .fa-regular {
 	position: relative;
@@ -244,9 +246,7 @@ footer nav ul {
 
 /* Modale */
 
-
-
-.modal {
+.js-modal {
     position: fixed;
     top: 0;
     left: 0;
