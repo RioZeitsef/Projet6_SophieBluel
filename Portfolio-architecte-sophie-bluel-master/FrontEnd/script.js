@@ -21,15 +21,6 @@ function getWorks() {
         return button;
     }
 
-    // const buttonsColor = document.querySelectorAll('.buttonBase');
-
-    // buttonsColor.forEach(button => {
-    //     button.addEventListener('click', () => {
-    //         buttonsColor.forEach(btn => btn.setAttribute('data-active', 'false'));
-    //         button.setAtribute('data-active', 'true');
-    //     });
-    // });
-
     function createCategorieButton(categories) {
         const portfolioSection = document.getElementById('portfolio');
         const h2Element = portfolioSection.querySelector('h2');
@@ -57,7 +48,16 @@ function initCategories(works) {
 }    
 
 
-function displayWorks(listWorks, categoryId) {
+function displayWorks(listWorks, e = null) {
+    if (e) {  
+        const buttons = document.querySelectorAll('#categories-buttons button');
+
+        buttons.forEach (button => {
+            button.setAttribute('data-active', 'false');
+        });   
+        const btn = e.currentTarget;
+        btn.setAttribute('data-active', 'true');
+    }
     const gallery = document.querySelector('#portfolio .gallery');
     gallery.innerHTML = '';
     listWorks.forEach(work => {

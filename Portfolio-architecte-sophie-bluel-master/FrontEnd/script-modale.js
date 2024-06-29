@@ -37,18 +37,23 @@ function displayWorks(listWorks, categoryId) {
 
 getWorks();
 
-const openModal = function (e) {
-    e.preventDefault();
-    const target = document.querySelector(e.target.getAttribute('href'));
-    target.style.display = null;
-    target.removeAttribute('aria-hidden');
-    target.setAttribute('aria-modal', 'true');
+var modal = document.getElementById("modal1");
+var btn = document.getElementById("mybtn");
+var span = document.getElementsByClassName("modalclose")[0];
+
+btn.onclick = function() {
+  modal.style.display = "block";
 }
 
-document.querySelectorAll('.js-modal').forEach(a => {
-    a.addEventListener('click', openModal) 
-    
-    });
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
 
 
 

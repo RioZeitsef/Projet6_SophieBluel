@@ -9,12 +9,10 @@
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
-	<script src="./script-modale.js" defer></script>
+	<script src="script-modale.js" defer></script>
+	<script src="https://kit.fontawesome.com/6562e26437.js"
+	crossorigin="anonymous"></script>
 </head>
-<script
-src="https://kit.fontawesome.com/6562e26437.js"
-crossorigin="anonymous"
-></script>
 <body>
 <header>
     <a class="anchor-title" href="index.html">
@@ -44,18 +42,15 @@ crossorigin="anonymous"
 	<section id="portfolio">
         <div class="line-project">
 		    <h2 id="titleProject" class="replace-title">Mes Projets</h2>
-            <a class="modify" href="#modal1" class="js-modal"><i class="fa-regular fa-pen-to-square"></i>Modifier</a>
+            <button id="mybtn"><i class="fa-regular fa-pen-to-square"></i>Modifier</button>
         </div>
-		<aside id="modal1" class="modal" aria-hidden="true" style="display:none">
-			<div class="modal-wrapper">
-				<button class="js-modal-close">x</button>
-				<h3>Galerie Photos</h3>
-				<div>
-
-				</div>
-				<button class="js-modal-addPhotos">Ajouter une photo</button>
-			</div>
-		</aside>
+		<div id="modal1" class="modal" aria-hidden="true" aria-modal="true" style="display: none;">
+			<div class="js-modal" >
+					<span class="modalclose">x</span>
+					<h3>Galerie Photos</h3>
+					<button class="js-modal-addPhotos">Ajouter une photo</button>
+			</div>		
+		</div>
 		<div class="gallery">
 		</div>
 	</section>
