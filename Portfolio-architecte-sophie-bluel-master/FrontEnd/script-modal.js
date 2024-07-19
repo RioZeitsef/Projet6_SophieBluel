@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
   getWorks(false);
 });
 
+// création de la modale et de ses boutons de navigation / suupresion
+
 var modal = document.getElementById("modal1");
 var btn = document.getElementById("mybtn");
 var span = document.getElementsByClassName("modalclose")[0];
@@ -19,3 +21,47 @@ window.onclick = function (event) {
     modal.style.display = "none";
   }
 };
+
+window.addEventListener("keydown", function (e) {
+  if (e.key === "Escape" || e.key === "Esc") {
+    modal.style.display = "none";
+  }
+});
+
+// Ajout & suppression des images dans la modale
+
+//Appel à l'API "WWorks" pour récupérer les images
+fetch("http://localhost:5678/api/works")
+  .then(response => response.json())
+  .then(images => {
+    const modal = document.querySelector('.js-modal');
+    const button = modal.querySelector('.js-modal-addPhotos');
+
+    const imagesContainer = document.createElement('div');
+    imagesContainer.className = 'images-container';
+    
+    // Pour chaque image que j'intègre dans une div pour intégrer le bouton de suppression également
+    images.forEach(image => {
+      const imgWrapper = document.createElement('div');
+      imgWrapper.className = 'image-wrapper';
+        
+      const imgElement = document.createElement('img');
+      imgElement.src = image.imageUrl; 
+      imgWrapper.appendChild(imgElement);
+
+      const deleteButton = document.createElement('button'); // Crée le bouton de suppression
+      deleteButton.textContent = 'Supprimer';
+      deleteButton.className = 'delete-button';
+      deleteButton.onclick = function() {
+        imgWrapper.remove(); // Supprime le conteneur de l'image
+      };
+      imgWrapper.appendChild(deleteButton);
+
+      imagesContainer.appendChild(imgWrapper);
+    });
+    
+    modal.insertBefore(imagesContainer, button);
+  })
+  .catch(error => console.error('Erreur lors de la récupération des images:', error));
+
+
