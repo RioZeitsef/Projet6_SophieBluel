@@ -31,6 +31,7 @@ console.log('Réponse de l\'API', data);
         if (data.token) {
             localStorage.setItem('token', data.token);
             window.location = 'index.html';
+            window.location = 'projects.html';
         } else {
             alert('Erreur de connexion');
         }

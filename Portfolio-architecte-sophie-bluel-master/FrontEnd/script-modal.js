@@ -53,7 +53,24 @@ fetch("http://localhost:5678/api/works")
       deleteButton.textContent = 'Supprimer';
       deleteButton.className = 'delete-button';
       deleteButton.onclick = function() {
-        imgWrapper.remove(); // Supprime le conteneur de l'image
+        const id = image.id;
+        const token = localstorage.getItem('token');
+        fetch(`http://localhost:5678/api/works/${id}`, {
+          method: 'DELETE',
+          headers:{
+            'Authorization': `Bearer ${token}`
+          }
+        })
+        .then(response => {
+          if(response.ok) {
+            imgWrapper.remove(); // Supprime l'image
+          } else {
+            alert('Une erreur est survenue lors de la suppression de l\'image');
+          }
+        })
+        .catch(error =>{
+          console.error('Erreur lors de la suppression de l\'image:', error);
+        });
       };
       imgWrapper.appendChild(deleteButton);
 
