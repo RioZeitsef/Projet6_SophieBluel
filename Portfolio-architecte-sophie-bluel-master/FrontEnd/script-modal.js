@@ -1,36 +1,55 @@
 document.addEventListener("DOMContentLoaded", () => {
   getWorks(false);
+  fetchCategories();
 });
 
-// création de la modale et de ses boutons de navigation / suupresion
+// création de la modale et de ses boutons de navigation / suppresion
 
-var modal = document.getElementById("modal1");
+var modal1 = document.getElementById("modal1");
+var modal2 = document.getElementById("modal2");
 var btn = document.getElementById("mybtn");
-var span = document.getElementsByClassName("modalclose")[0];
+var span = document.getElementsByClassName("modalclose");
+var addPhotos = document.getElementById("addPhotos");
+var arrowBack = document.getElementById("modalBack");
 
 btn.onclick = function () {
-  modal.style.display = "block";
+  modal1.style.display = "block";
 };
 
-span.onclick = function () {
-  modal.style.display = "none";
-};
+for (var i = 0; i < span.length; i++) {
+  span[i].addEventListener("click", function () {
+    modal1.style.display = "none";
+    modal2.style.display = "none";
+  });
+}  
+
+arrowBack.onclick = function () {
+  modal2.style.display = "none";
+  modal1.style.display = "block";
+};  
+
+addPhotos.onclick = function () {
+  modal1.style.display = "none";
+  modal2.style.display = "block";
+};  
 
 window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
+  if (event.target == modal1 || event.target == modal2) {
+    modal1.style.display = "none";
+    modal2.style.display = "none";
   }
 };
 
 window.addEventListener("keydown", function (e) {
   if (e.key === "Escape" || e.key === "Esc") {
-    modal.style.display = "none";
+    modal1.style.display = "none";
+    modal2.style.display = "none";
   }
 });
 
 // Ajout & suppression des images dans la modale
 
-//Appel à l'API "WWorks" pour récupérer les images
+//Appel à l'API "Works" pour récupérer les images
 fetch("http://localhost:5678/api/works")
   .then(response => response.json())
   .then(images => {
@@ -54,7 +73,7 @@ fetch("http://localhost:5678/api/works")
       deleteButton.className = 'delete-button';
       deleteButton.onclick = function() {
         const id = image.id;
-        const token = localstorage.getItem('token');
+        const token = localStorage.getItem('token');
         fetch(`http://localhost:5678/api/works/${id}`, {
           method: 'DELETE',
           headers:{
@@ -81,4 +100,23 @@ fetch("http://localhost:5678/api/works")
   })
   .catch(error => console.error('Erreur lors de la récupération des images:', error));
 
+// récupération des catégories pour l'ajout d'images dans la biblio
 
+function fetchCategories() {
+  fetch("http://localhost:5678/api/categories")
+    .then(response => response.json())
+    .then(categories => {
+      const categorySelect = document.getElementById("category");
+      categories.forEach(category => {
+        const option = document.createElement("option");
+        option.value = category.id;
+        option.textContent = category.name;
+        categorySelect.appendChild(option);
+      });
+    })
+    .catch(error => {
+      console.error('Erreur lors de la récupération des catégories:', error);
+  }); 
+}
+
+// application de la methode POST sur le bouton Valider 

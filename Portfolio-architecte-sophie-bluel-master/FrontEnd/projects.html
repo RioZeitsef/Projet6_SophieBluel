@@ -49,7 +49,26 @@
 			<div class="js-modal" >
 					<span class="modalclose">x</span>
 					<h3>Galerie Photos</h3>
-					<button class="js-modal-addPhotos">Ajouter une photo</button>
+					<button id="addPhotos">Ajouter une photo</button>
+			</div>		
+		</div>
+		<div id="modal2" class="modal" aria-hidden="true" aria-modal="true" style="display: none;">
+			<div class="js-modal-add">
+					<span class="modalclose">x</span>
+					<span id="modalBack"><i class="fa-solid fa-arrow-left"></i></span>
+					<h3>Ajout photo</h3>
+					<form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
+						<label for="file">+ Ajouter photo</label>
+						<input type="file" id="file" name="file">
+						<h3>Titre</h3>	
+						<input type="text" id="title" name="title" required>
+						<h3>Catégorie</h3>
+						<label for="category" name="category" required>
+							<select id="category" name="category" required>
+								<option value="" disabled selected></option>
+							</select>			
+					</form>
+					<button class="js-modal-changeTitle">Valider</button>
 			</div>		
 		</div>
 		<div class="gallery">
