@@ -120,3 +120,50 @@ function fetchCategories() {
 }
 
 // application de la methode POST sur le bouton Valider 
+
+document.getElementById("uploadForm").onsubmit = function(e) {
+  e.preventDefault();
+
+    const title = document.getElementById("title").value;
+    const category = document.getElementById("category").value;
+    const file = document.getElementById("file").files[0];
+
+    if (!title || !category || !file) {
+      alert("Veuillez remplir tous les champs");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("category", category);
+    formData.append("image", file);
+
+    // Log des données envoyées pour le débogage
+    // console.log("Données envoyées :", {
+    // title: title,
+    // category: category,
+    // image: file.name
+    // });
+
+    fetch("http://localhost:5678/api/works", {
+      method: "POST",
+      body: formData,
+      headers : {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Erreur réseau");
+      }
+      return response.json();
+      })
+    .then(data => {
+      alert("Téléchargement réussi");
+      document.getElementById("modal2").style.display = "none";
+    })
+    .catch(error => {
+    console.error('Erreur lors du téléchargement de l\'image:', error);
+    alert("Une erreur est survenue lors du téléchargement de l'image");
+  });
+}
