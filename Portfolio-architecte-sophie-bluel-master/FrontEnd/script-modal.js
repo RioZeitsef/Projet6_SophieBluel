@@ -54,7 +54,7 @@ fetch("http://localhost:5678/api/works")
   .then(response => response.json())
   .then(images => {
     const modal = document.querySelector('.js-modal');
-    const button = modal.querySelector('.js-modal-addPhotos');
+    const addButton = document.getElementById("addPhotos")
 
     const imagesContainer = document.createElement('div');
     imagesContainer.className = 'images-container';
@@ -66,11 +66,11 @@ fetch("http://localhost:5678/api/works")
         
       const imgElement = document.createElement('img');
       imgElement.src = image.imageUrl; 
-      imgWrapper.appendChild(imgElement);
+      
+      const hiddenDeleteButton = document.getElementById('delete-button')
+      const deleteButton = hiddenDeleteButton.cloneNode(true);  // Crée le bouton de suppression
+      deleteButton.style.display = "block";
 
-      const deleteButton = document.createElement('button'); // Crée le bouton de suppression
-      deleteButton.textContent = 'Supprimer';
-      deleteButton.className = 'delete-button';
       deleteButton.onclick = function() {
         const id = image.id;
         const token = localStorage.getItem('token');
@@ -91,12 +91,12 @@ fetch("http://localhost:5678/api/works")
           console.error('Erreur lors de la suppression de l\'image:', error);
         });
       };
-      imgWrapper.appendChild(deleteButton);
-
       imagesContainer.appendChild(imgWrapper);
+      imgWrapper.appendChild(deleteButton);
+      imgWrapper.appendChild(imgElement);
     });
     
-    modal.insertBefore(imagesContainer, button);
+    modal.insertBefore(imagesContainer, addButton);
   })
   .catch(error => console.error('Erreur lors de la récupération des images:', error));
 

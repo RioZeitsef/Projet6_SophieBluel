@@ -48,15 +48,16 @@
 		<div id="modal1" class="modal" aria-hidden="true" aria-modal="true" style="display: none;">
 			<div class="js-modal" >
 					<span class="modalclose">x</span>
-					<h3>Galerie Photos</h3>
+					<h3 class="title-modal">Galerie Photos</h3>
 					<button id="addPhotos">Ajouter une photo</button>
+					<button id="delete-button" style='display: none;'><i class="fa-regular fa-trash-can fa-lg"></i></button>
 			</div>		
 		</div>
 		<div id="modal2" class="modal" aria-hidden="true" aria-modal="true" style="display: none;">
 			<div class="js-modal-add">
 					<span class="modalclose">x</span>
 					<span id="modalBack"><i class="fa-solid fa-arrow-left"></i></span>
-					<h3>Ajout photo</h3>
+					<h3 class="title-modal">Ajout photo</h3>
 					<form id="uploadForm" action="http://localhost:5678/api/works" method="post" enctype="multipart/form-data">
 						<label for="file">+ Ajouter photo</label>
 						<input type="file" id="file" name="file">

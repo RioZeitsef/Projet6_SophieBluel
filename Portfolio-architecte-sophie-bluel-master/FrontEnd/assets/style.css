@@ -325,7 +325,7 @@ footer nav ul {
   margin: 2em;
 }
 
-/* Modale */
+/* Modale1 de suppression de photos */
 .modal {
   display: none;
   position: fixed;
@@ -347,15 +347,47 @@ footer nav ul {
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 50%;
+  width: 20%;
+  border-radius: 10px;
 }
 
-.js-modal-add {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 50%;
+.images-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 40px 40px;
+  padding-bottom: 40px;
+}
+
+#addPhotos {
+  position: relative;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+  border-radius: 20px;
+  color: white;
+  background-color: #1d6154;
+  border: solid 1px white;
+  padding: 10px 20px;
+  font-family: "Syne";
+  justify-content: center;
+  min-width: 90px;
+  margin: 5px;
+}
+
+.images-container img {
+  display: flex;
+  max-width: 100%;
+  max-height: 100%;
+  
+}
+
+.image-wrapper {
+  width: 100px;
+  height: 120px;
+  padding-bottom: 20px;
+  display: flex;
 }
 
 .modalclose {
@@ -372,15 +404,34 @@ footer nav ul {
   cursor: pointer;
 }
 
-.images-container {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  margin: 40px 40px;
+.title-modal {
+  top: 40px;
+  font-size: x-large;
+  font-weight: bold;
+  text-align: center;
 }
 
-.images-container img {
-  width: 120px;
-  height: 30%;
-  margin: 10px;
+#delete-button {
+  border: none;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: relative;
+  height: 31px;
+  width: 24px;
+  top: 10px;
+  left: 70px 
+}
+
+.fa-trash-can {
+  color: white;
+  position: relative;
+  left: 1px;
+}
+
+/* Modal 2 add new photos on back */
+.js-modal-add {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
 }
