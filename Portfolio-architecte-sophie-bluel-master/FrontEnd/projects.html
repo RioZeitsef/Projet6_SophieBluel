@@ -50,17 +50,19 @@
 					<span class="modalclose">x</span>
 					<h3 class="title-modal">Galerie Photos</h3>
 					<button id="addPhotos">Ajouter une photo</button>
-					<button id="delete-button" style='display: none;'><i class="fa-regular fa-trash-can fa-lg"></i></button>
+					<button id="delete-button" style='display: none;'><i class="fa-regular fa-trash-can fa-sm"></i></button>
 			</div>		
 		</div>
 		<div id="modal2" class="modal" aria-hidden="true" aria-modal="true" style="display: none;">
 			<div class="js-modal-add">
 					<span class="modalclose">x</span>
-					<span id="modalBack"><i class="fa-solid fa-arrow-left"></i></span>
+					<span id="modalBack"><i class="fa-solid fa-arrow-left fa-xl"></i></span>
 					<h3 class="title-modal">Ajout photo</h3>
 					<form id="uploadForm" action="http://localhost:5678/api/works" method="post" enctype="multipart/form-data">
-						<label for="file">+ Ajouter photo</label>
-						<input type="file" id="file" name="file">
+						<label for="image_uploads">+ Ajouter photo</label>
+						<input type="file" 
+						id="file" 
+						name="jpg, png : 4mo max">
 						<h3>Titre</h3>	
 						<input type="text" id="title" name="title" required>
 						<h3>Catégorie</h3>
