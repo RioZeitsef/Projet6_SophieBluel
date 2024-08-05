@@ -469,3 +469,23 @@ footer nav ul {
   width: 40%;
   margin: 5px;
 }
+/* 
+.upload-label {
+  display: inline-block;
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+#imagePreviewContainer {
+  margin-top: 10px;
+}
+
+#imagePreviewContainer img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+} */

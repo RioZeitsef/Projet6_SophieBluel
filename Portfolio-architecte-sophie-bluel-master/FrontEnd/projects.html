@@ -59,18 +59,20 @@
 					<span id="modalBack"><i class="fa-solid fa-arrow-left fa-xl"></i></span>
 					<h3 class="title-modal">Ajout photo</h3>
 					<form id="uploadForm" action="http://localhost:5678/api/works" method="post" enctype="multipart/form-data">
-						<label for="image_uploads">+ Ajouter photo</label>
+						<label for="image_uploads" class="upload-label">+ Ajouter photo</label>
 						<input type="file" 
-						id="file" 
-						name="jpg, png : 4mo max">
+						id="image_uploads" 
+						name="image_uploads"
+						accept="image/*">
+						<div></div>
 						<h3>Titre</h3>	
 						<input type="text" id="title" name="title" required>
 						<h3>Catégorie</h3>
 						<label for="category" name="category" required>
 							<select id="category" name="category" required>
 								<option value="" disabled selected></option>
-							</select>			
-					</form>
+							</select>
+					</form>	
 					<button class="js-modal-changeTitle">Valider</button>
 			</div>		
 		</div>
