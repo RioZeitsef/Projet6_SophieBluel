@@ -21,17 +21,17 @@ for (var i = 0; i < span.length; i++) {
     modal1.style.display = "none";
     modal2.style.display = "none";
   });
-}  
+}
 
 arrowBack.onclick = function () {
   modal2.style.display = "none";
   modal1.style.display = "block";
-};  
+};
 
 addPhotos.onclick = function () {
   modal1.style.display = "none";
   modal2.style.display = "block";
-};  
+};
 
 window.onclick = function (event) {
   if (event.target == modal1 || event.target == modal2) {
@@ -51,119 +51,123 @@ window.addEventListener("keydown", function (e) {
 
 //Appel à l'API "Works" pour récupérer les images
 fetch("http://localhost:5678/api/works")
-  .then(response => response.json())
-  .then(images => {
-    const modal = document.querySelector('.js-modal');
-    const addButton = document.getElementById("addPhotos")
+  .then((response) => response.json())
+  .then((images) => {
+    const modal = document.querySelector(".js-modal");
+    const addButton = document.getElementById("addPhotos");
 
-    const imagesContainer = document.createElement('div');
-    imagesContainer.className = 'images-container';
-    
+    const imagesContainer = document.createElement("div");
+    imagesContainer.className = "images-container";
+
     // Pour chaque image que j'intègre dans une div pour intégrer le bouton de suppression également
-    images.forEach(image => {
-      const imgWrapper = document.createElement('div');
-      imgWrapper.className = 'image-wrapper';
-        
-      const imgElement = document.createElement('img');
-      imgElement.src = image.imageUrl; 
-      
-      const hiddenDeleteButton = document.getElementById('delete-button')
-      const deleteButton = hiddenDeleteButton.cloneNode(true);  // Crée le bouton de suppression
+    images.forEach((image) => {
+      const imgWrapper = document.createElement("div");
+      imgWrapper.className = "image-wrapper";
+
+      const imgElement = document.createElement("img");
+      imgElement.src = image.imageUrl;
+
+      const hiddenDeleteButton = document.getElementById("delete-button");
+      const deleteButton = hiddenDeleteButton.cloneNode(true); // Crée le bouton de suppression
       deleteButton.style.display = "block";
 
-      deleteButton.onclick = function() {
+      deleteButton.onclick = function () {
         const id = image.id;
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem("token");
         fetch(`http://localhost:5678/api/works/${id}`, {
-          method: 'DELETE',
-          headers:{
-            'Authorization': `Bearer ${token}`
-          }
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         })
-        .then(response => {
-          if(response.ok) {
-            imgWrapper.remove(); // Supprime l'image
-          } else {
-            alert('Une erreur est survenue lors de la suppression de l\'image');
-          }
-        })
-        .catch(error =>{
-          console.error('Erreur lors de la suppression de l\'image:', error);
-        });
+          .then((response) => {
+            if (response.ok) {
+              imgWrapper.remove(); // Supprime l'image
+            } else {
+              alert(
+                "Une erreur est survenue lors de la suppression de l'image"
+              );
+            }
+          })
+          .catch((error) => {
+            console.error("Erreur lors de la suppression de l'image:", error);
+          });
       };
       imagesContainer.appendChild(imgWrapper);
       imgWrapper.appendChild(deleteButton);
       imgWrapper.appendChild(imgElement);
     });
-    
+
     modal.insertBefore(imagesContainer, addButton);
   })
-  .catch(error => console.error('Erreur lors de la récupération des images:', error));
+  .catch((error) =>
+    console.error("Erreur lors de la récupération des images:", error)
+  );
 
 // récupération des catégories pour l'ajout d'images dans la biblio
 
 function fetchCategories() {
   fetch("http://localhost:5678/api/categories")
-    .then(response => response.json())
-    .then(categories => {
+    .then((response) => response.json())
+    .then((categories) => {
       const categorySelect = document.getElementById("category");
-      categories.forEach(category => {
+      categories.forEach((category) => {
         const option = document.createElement("option");
         option.value = category.id;
         option.textContent = category.name;
         categorySelect.appendChild(option);
       });
     })
-    .catch(error => {
-      console.error('Erreur lors de la récupération des catégories:', error);
-  }); 
+    .catch((error) => {
+      console.error("Erreur lors de la récupération des catégories:", error);
+    });
 }
 
-// application de la methode POST sur le bouton Valider 
+// application de la methode POST sur le bouton Valider
 
-document.getElementById("uploadForm").onsubmit = function(e) {
+document.getElementById("uploadForm").onsubmit = function (e) {
   e.preventDefault();
 
-    const title = document.getElementById("title").value;
-    const category = document.getElementById("category").value;
-    const file = document.getElementById("file").files[0];
+  const title = document.getElementById("title").value;
+  const category = document.getElementById("category").value;
+  const file = document.getElementById("file").files[0];
 
-    if (!title || !category || !file) {
-      alert("Veuillez remplir tous les champs");
-      return;
-    }
+  if (!title || !category || !file) {
+    alert("Veuillez remplir tous les champs");
+    return;
+  }
 
-    const formData = new FormData();
-    formData.append("title", title);
-    formData.append("category", category);
-    formData.append("image", file);
+  const formData = new FormData();
+  formData.append("title", title);
+  formData.append("category", category);
+  formData.append("image", file);
 
-    // Log des données envoyées pour le débogage
-    // console.log("Données envoyées :", {
-    // title: title,
-    // category: category,
-    // image: file.name
-    // });
+  // Log des données envoyées pour le débogage
+  // console.log("Données envoyées :", {
+  // title: title,
+  // category: category,
+  // image: file.name
+  // });
 
-    fetch("http://localhost:5678/api/works", {
-      method: "POST",
-      body: formData,
-      headers : {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      }
-    })
-    .then(response => {
+  fetch("http://localhost:5678/api/works", {
+    method: "POST",
+    body: formData,
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  })
+    .then((response) => {
       if (!response.ok) {
         throw new Error("Erreur réseau");
       }
       return response.json();
-      })
-    .then(data => {
+    })
+    .then((data) => {
       alert("Téléchargement réussi");
       document.getElementById("modal2").style.display = "none";
     })
-    .catch(error => {
-    console.error('Erreur lors du téléchargement de l\'image:', error);
-    alert("Une erreur est survenue lors du téléchargement de l'image");
-  });
-}
+    .catch((error) => {
+      console.error("Erreur lors du téléchargement de l'image:", error);
+      alert("Une erreur est survenue lors du téléchargement de l'image");
+    });
+};
