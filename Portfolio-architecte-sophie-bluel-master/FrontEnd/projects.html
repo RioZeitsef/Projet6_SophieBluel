@@ -55,16 +55,19 @@
 		</div>
 		<div id="modal2" class="modal" aria-hidden="true" aria-modal="true" style="display: none;">
 			<div class="js-modal-add">
-					<span class="modalclose">x</span>
-					<span id="modalBack"><i class="fa-solid fa-arrow-left fa-xl"></i></span>
+					<div class="navigation-button">
+						<span class="modalclose">x</span>
+						<span id="modalBack"><i class="fa-solid fa-arrow-left fa-xl"></i></span>
+					</div>
 					<h3 class="title-modal">Ajout photo</h3>
-					<form id="uploadForm" action="http://localhost:5678/api/works" method="post" enctype="multipart/form-data">
+					<div class="background-add-photos">
+						<form id="uploadForm" action="http://localhost:5678/api/works" method="post" enctype="multipart/form-data">
 						<label for="image_uploads" class="upload-label">+ Ajouter photo</label>
 						<input type="file" 
 						id="image_uploads" 
 						name="image_uploads"
 						accept="image/*">
-						<div></div>
+					</div>
 						<h3>Titre</h3>	
 						<input type="text" id="title" name="title" required>
 						<h3>Catégorie</h3>
@@ -72,8 +75,9 @@
 							<select id="category" name="category" required>
 								<option value="" disabled selected></option>
 							</select>
+						</label>
 					</form>	
-					<button class="js-modal-changeTitle">Valider</button>
+				<button class="js-modal-changeTitle">Valider</button>
 			</div>		
 		</div>
 		<div class="gallery">

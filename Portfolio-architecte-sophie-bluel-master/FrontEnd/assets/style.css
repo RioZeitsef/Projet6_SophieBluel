@@ -393,7 +393,8 @@ footer nav ul {
 
 .modalclose {
   color: #aaa;
-  float: right;
+  position: relative;
+  left: 480px;
   font-size: 28px;
   font-weight: bold;
 }
@@ -439,7 +440,7 @@ footer nav ul {
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 20%;
+  max-width: 500px;
   height: 700px;
   border-radius: 10px;
 }
@@ -451,12 +452,21 @@ footer nav ul {
   justify-content: center;
   margin-top: 50px;
 }
+#title {
+  width: 80%;
+  margin-bottom: auto;
+}
+
+#category {
+  width: 80%;
+  margin: auto;
+}
 
 .js-modal-changeTitle {
-  position: relative;
-  top: 30px;
-  left: 50%;
-  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
   cursor: pointer;
   border-radius: 20px;
   color: white;
@@ -464,7 +474,5 @@ footer nav ul {
   border: solid 1px white;
   padding: 10px 20px;
   font-family: "Syne";
-  justify-content: center;
   width: 40%;
-  margin: 5px;
 }
