@@ -55,29 +55,32 @@
 		</div>
 		<div id="modal2" class="modal" aria-hidden="true" aria-modal="true" style="display: none;">
 			<div class="js-modal-add">
-					<div class="navigation-button">
-						<span class="modalclose">x</span>
-						<span id="modalBack"><i class="fa-solid fa-arrow-left fa-xl"></i></span>
-					</div>
-					<h3 class="title-modal">Ajout photo</h3>
-					<div class="background-add-photos">
-						<form id="uploadForm" action="http://localhost:5678/api/works" method="post" enctype="multipart/form-data">
+				<div class="navigation-button">
+					<span class="modalclose">x</span>
+					<span id="modalBack"><i class="fa-solid fa-arrow-left fa-xl"></i></span>
+				</div>
+				<h3 class="title-modal">Ajout photo</h3>
+				<div class="background-add-photos">
+					<form id="uploadForm" action="http://localhost:5678/api/works" method="post" enctype="multipart/form-data">
 						<span><i class="fa-regular fa-image fa-2xl"></i></span>	
 						<button for="image_uploads" class="btn-upload">+ Ajouter photo</button>
-						<input type="file" 
-						id="image_uploads" 
-						name="image_uploads"
-						accept="image/*">
-					</div>
-						<h3>Titre</h3>	
-						<input type="text" id="title" name="title" required>
-						<h3>Catégorie</h3>
-						<label for="category" name="category" required>
-							<select id="category" name="category" required>
-								<option value="" disabled selected></option>
-							</select>
-						</label>
-					</form>	
+							<input type="file" 
+							id="image_uploads" 
+							name="image_uploads"
+							accept="image/*">
+							<p>jpg. png : 4mo max</p>
+					</form>			
+				</div>
+				<div class="title-and-category">
+					<h3>Titre</h3>	
+					<input type="text" id="title" name="title" required>
+					<h3>Catégorie</h3>
+					<label for="category" name="category" required>
+						<select id="category" name="category" required>
+							<option value="" disabled selected></option>
+						</select>
+					</label>		
+				</div>	
 				<button class="js-modal-changeTitle">Valider</button>
 			</div>		
 		</div>

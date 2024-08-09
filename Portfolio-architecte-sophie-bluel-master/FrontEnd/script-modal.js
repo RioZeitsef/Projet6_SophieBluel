@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // création de la modale et de ses boutons de navigation / suppresion
-
+var works = fetch("http://localhost:5678/api/works");
 var modal1 = document.getElementById("modal1");
 var modal2 = document.getElementById("modal2");
 var btn = document.getElementById("mybtn");
