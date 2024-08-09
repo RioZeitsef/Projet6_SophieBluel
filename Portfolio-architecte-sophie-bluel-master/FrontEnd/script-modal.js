@@ -123,6 +123,26 @@ function fetchCategories() {
     });
 }
 
+// apparition de l'image dynamiquement après avoir choisi le fichier
+document.getElementById('image_uploads').addEventListener('change', function(event) {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+      const img = document.createElement('img');
+      img.src = e.target.result;
+
+      const container = document.getElementById('uploadForm');
+      container.innerHTML = '';
+      container.appendChild(img);
+      img.style.display = 'block';
+    };
+
+    reader.readAsDataURL(file);
+  }
+});  
+
 // application de la methode POST sur le bouton Valider
 
 document.getElementById("uploadForm").onsubmit = function (e) {
@@ -142,13 +162,6 @@ document.getElementById("uploadForm").onsubmit = function (e) {
   formData.append("category", category);
   formData.append("image", file);
 
-  // Log des données envoyées pour le débogage
-  // console.log("Données envoyées :", {
-  // title: title,
-  // category: category,
-  // image: file.name
-  // });
-
   fetch("http://localhost:5678/api/works", {
     method: "POST",
     body: formData,
@@ -157,12 +170,14 @@ document.getElementById("uploadForm").onsubmit = function (e) {
     },
   })
     .then((response) => {
+      console.log("Réponse du serveur:", response);
       if (!response.ok) {
         throw new Error("Erreur réseau");
       }
       return response.json();
     })
     .then((data) => {
+      console.log("données reçues:", data);
       alert("Téléchargement réussi");
       document.getElementById("modal2").style.display = "none";
     })

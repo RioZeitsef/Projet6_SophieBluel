@@ -452,10 +452,10 @@ footer nav ul {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-top: 40px;
+  height: 200px;
 }
 
-.js-modal-changeTitle {
+#submitPhotos {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -490,11 +490,18 @@ footer nav ul {
   cursor: pointer;
 }
 
+.background-add-photos img {
+  max-width: 100%;
+  max-height: 100%;
+  display: none;
+}
+
+
 .fa-image {
   font-size: 80px;
   color: #b9c5cc;
   position: relative;
-  bottom: 20px;
+  top: 10px;
   left: 1px;
 }
 
@@ -508,7 +515,7 @@ footer nav ul {
   font-family: "Syne";
   width: 100%;
   margin: auto;
-  margin-top: 10px;
+  margin-top: 40px;
   margin-bottom: 10px;
 }
 
