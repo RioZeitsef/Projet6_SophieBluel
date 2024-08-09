@@ -407,7 +407,7 @@ footer nav ul {
 }
 
 .title-modal {
-  padding-top: 40px;
+  padding-top: 20px;
   padding-bottom: 10px;
   top: 40px;
   font-size: x-large;
@@ -438,7 +438,7 @@ footer nav ul {
 .js-modal-add {
   background-color: #fefefe;
   margin: auto;
-  padding: 20px;
+  padding: 20px 40px;
   border: 1px solid #888;
   max-width: 500px;
   height: 700px;
@@ -450,7 +450,6 @@ footer nav ul {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 50px;
 }
 #title {
   width: 80%;
@@ -475,4 +474,18 @@ footer nav ul {
   padding: 10px 20px;
   font-family: "Syne";
   width: 40%;
+}
+
+.background-add-photos {
+  margin: auto;
+  background-color: lightblue;
+  width: 80%;
+  height: 200px;
+}
+
+.background-add-photos input[type="file"] {
+  left: 0;
+  top: 0;
+  opacity: 0;
+  position: absolute;
 }
