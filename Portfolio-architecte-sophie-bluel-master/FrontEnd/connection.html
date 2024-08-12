@@ -11,15 +11,19 @@
     <link rel="stylesheet" href="./assets/style.css">
 	<link rel="stylesheet" href="./assets/connection.css">
 	<script src="./connect.js" defer></script>
+	<script src="loginlogout.js" defer></script>
 </head>
 <body>
 <header>
-	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+	<a class="anchor-title" href="index.html">
+	    <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+    </a>
 	<nav>
 		<ul>
-			<li>projets</li>
+			<li><a href="projects.html">projets</a></li>
 			<li>contact</li>
-			<li>login</li>
+			<li id="login" ><a href="connection.html">login</a></li>
+			<li id="logout" style="display: none;"><a href="connection.html">logout</a></li>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>
