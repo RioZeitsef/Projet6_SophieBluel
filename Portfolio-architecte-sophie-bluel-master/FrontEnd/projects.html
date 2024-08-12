@@ -61,7 +61,7 @@
 					<span class="modalclose">x</span>
 					<span id="modalBack"><i class="fa-solid fa-arrow-left fa-xl"></i></span>
 				</div>
-				<h3 class="title-modal">Ajout photo</h3>
+			<h3 class="title-modal">Ajout photo</h3>
 				<div class="background-add-photos">
 					<form id="uploadForm" action="http://localhost:5678/api/works" method="post" enctype="multipart/form-data">
 						<span><i class="fa-regular fa-image fa-2xl"></i></span>	
@@ -71,20 +71,21 @@
 							name="image_uploads"
 							accept="image/*">
 							<p>jpg. png : 4mo max</p>
-					</form>			
-				</div>
-				<div class="title-and-category">
-					<h3>Titre</h3>	
-					<input type="text" id="title" name="title" required>
-					<h3>Catégorie</h3>
-					<label for="category" name="category" required>
-						<select id="category" name="category" required>
-							<option value="" disabled selected></option>
-						</select>
-					</label>		
-				</div>	
-				<button id="submitPhotos">Valider</button>
-			</div>		
+								
+						</div>
+						<div class="title-and-category">
+							<h3>Titre</h3>	
+							<input type="text" id="title" name="title" required>
+							<h3>Catégorie</h3>
+							<label for="category" name="category" required>
+								<select id="category" name="category" required>
+									<option value="" disabled selected></option>
+								</select>
+								</label>		
+						</div>	
+						<button type="submit" id="addPhotos">Valider</button>
+					</form>
+				</div>		
 		</div>
 		<div class="gallery">
 		</div>

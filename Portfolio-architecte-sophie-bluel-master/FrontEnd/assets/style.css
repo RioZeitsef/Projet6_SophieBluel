@@ -455,7 +455,7 @@ footer nav ul {
   height: 200px;
 }
 
-#submitPhotos {
+/* #submitPhotos {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -469,7 +469,7 @@ footer nav ul {
   font-family: "Syne";
   width: 40%;
   margin-top: 30px;
-}
+} */
 
 .background-add-photos {
   display: flex;

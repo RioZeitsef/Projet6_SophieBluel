@@ -145,7 +145,7 @@ document.getElementById('image_uploads').addEventListener('change', function(eve
 
 // application de la methode POST sur le bouton Valider
 
-document.getElementById("uploadForm").onsubmit = function (e) {
+document.getElementById("uploadForm").onSubmit(function (e) {
   e.preventDefault();
 
   const title = document.getElementById("title").value;
@@ -169,20 +169,18 @@ document.getElementById("uploadForm").onsubmit = function (e) {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
   })
-    .then((response) => {
-      console.log("Réponse du serveur:", response);
+    .then(response => {
       if (!response.ok) {
         throw new Error("Erreur réseau");
       }
       return response.json();
     })
-    .then((data) => {
-      console.log("données reçues:", data);
+    .then(data => {
       alert("Téléchargement réussi");
       document.getElementById("modal2").style.display = "none";
     })
-    .catch((error) => {
+    .catch(error => {
       console.error("Erreur lors du téléchargement de l'image:", error);
       alert("Une erreur est survenue lors du téléchargement de l'image");
     });
-};
+});
