@@ -9,6 +9,15 @@ function updateLoginStatus () {
     }
 }
 
+function modifyIfToken () {
+    const token = localStorage.getItem('token');
+    if (token) {
+        document.getElementById('mybtn').style.display = 'block';
+    } else {
+        document.getElementById('mybtn').style.display = 'none';
+    }
+}
+
 function logout () {
     const logout = document.getElementById('logout');
     logout.addEventListener('click', function(event) {
@@ -21,3 +30,4 @@ function logout () {
 
 updateLoginStatus();
 logout();
+modifyIfToken();
