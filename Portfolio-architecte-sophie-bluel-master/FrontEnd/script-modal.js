@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // création de la modale et de ses boutons de navigation / suppresion
-var works = fetch("http://localhost:5678/api/works");
 var modal1 = document.getElementById("modal1");
 var modal2 = document.getElementById("modal2");
 var btn = document.getElementById("mybtn");
@@ -124,28 +123,30 @@ function fetchCategories() {
 }
 
 // apparition de l'image dynamiquement après avoir choisi le fichier
-document.getElementById('image_uploads').addEventListener('change', function(event) {
-  const file = event.target.files[0];
-  if (file) {
-    const reader = new FileReader();
+document
+  .getElementById("image_uploads")
+  .addEventListener("change", function (event) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
 
-    reader.onload = function(e) {
-      const img = document.createElement('img');
-      img.src = e.target.result;
+      reader.onload = function (e) {
+        const img = document.createElement("img");
+        img.src = e.target.result;
 
-      const container = document.getElementById('uploadForm');
-      container.innerHTML = '';
-      container.appendChild(img);
-      img.style.display = 'block';
-    };
+        const container = document.getElementById("uploadForm");
+        container.innerHTML = "";
+        container.appendChild(img);
+        img.style.display = "block";
+      };
 
-    reader.readAsDataURL(file);
-  }
-});  
+      reader.readAsDataURL(file);
+    }
+  });
 
 // application de la methode POST sur le bouton Valider
 
-document.getElementById("uploadForm").onSubmit(function (e) {
+document.getElementById("uploadForm").onsubmit(function (e) {
   e.preventDefault();
 
   const title = document.getElementById("title").value;
@@ -160,26 +161,29 @@ document.getElementById("uploadForm").onSubmit(function (e) {
   const formData = new FormData();
   formData.append("title", title);
   formData.append("category", category);
-  formData.append("image", file);
+  formData.append("imageUrl", file);
+
+  const token = localStorage.getItem("token");
+  console.log(token);
 
   fetch("http://localhost:5678/api/works", {
     method: "POST",
     body: formData,
     headers: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      Authorization: `Bearer ${token}`,
     },
   })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error("Erreur réseau");
+    .then((response) => {
+      if (response.ok) {
+        // return response.json();
+        document.getElementById("modal2").style.display = "none";
       }
-      return response.json();
     })
-    .then(data => {
+    .then((data) => {
       alert("Téléchargement réussi");
       document.getElementById("modal2").style.display = "none";
     })
-    .catch(error => {
+    .catch((error) => {
       console.error("Erreur lors du téléchargement de l'image:", error);
       alert("Une erreur est survenue lors du téléchargement de l'image");
     });

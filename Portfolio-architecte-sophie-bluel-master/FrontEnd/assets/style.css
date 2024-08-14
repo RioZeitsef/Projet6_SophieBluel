@@ -329,9 +329,6 @@ footer nav ul {
 .modal {
   display: none;
   position: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   z-index: 1;
   left: 0;
   top: 0;
@@ -343,8 +340,10 @@ footer nav ul {
 }
 
 .js-modal {
+  margin-top: 10%;
   background-color: #fefefe;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
   padding: 20px;
   border: 1px solid #888;
   max-width: 500px;
@@ -438,8 +437,10 @@ footer nav ul {
 /* Modal 2 add new photos on back */
 
 .js-modal-add {
+  margin-top: 10%;
+  margin-left: auto;
+  margin-right: auto;
   background-color: #fefefe;
-  margin: auto;
   padding: 20px 40px;
   border: 1px solid #888;
   max-width: 500px;
@@ -482,6 +483,7 @@ footer nav ul {
 }
 
 .background-add-photos input[type="file"] {
+  padding-top: 125px;
   max-width: 173px;
   top: 210px;
   height: 40px;
@@ -495,7 +497,6 @@ footer nav ul {
   max-height: 100%;
   display: none;
 }
-
 
 .fa-image {
   font-size: 80px;
@@ -535,24 +536,23 @@ footer nav ul {
 }
 
 #title[type="text"] {
-  height: 40px; 
-  padding: 10px; 
-  font-size: 16px; 
+  height: 40px;
+  padding: 10px;
+  font-size: 16px;
   border: none;
-  border-radius: 5px; 
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  outline: none;
-} 
-
-.title-and-category select {
-  width: 100%;
-  height: 60px; 
-  background-color: white;
-  padding: 10px; 
-  font-size: 16px; 
-  border: none;
-  border-radius: 5px; 
+  border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   outline: none;
 }
-    
+
+.title-and-category select {
+  width: 100%;
+  height: 60px;
+  background-color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
