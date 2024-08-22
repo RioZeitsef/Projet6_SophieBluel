@@ -10,6 +10,11 @@ function updateLoginStatus () {
 }
 
 function modifyIfToken () {
+
+    if (window.location.pathname.includes('index.html')) {
+        return; 
+    }
+    
     const token = localStorage.getItem('token');
     if (token) {
         document.getElementById('mybtn').style.display = 'block';

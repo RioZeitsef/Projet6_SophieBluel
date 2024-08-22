@@ -1,15 +1,13 @@
 let _works = [];
 let _categories = [];
 
-function getWorks(initCategoriesRequired = true) {
+function getWorks() {
   fetch("http://localhost:5678/api/works")
     .then((resp) => resp.json())
     .then((works) => {
       _works.push(...works);
-      if (initCategoriesRequired) {
-        initCategories(works);
-      }
       displayWorks(works);
+      initCategories(works);
     });
 }
 
@@ -28,7 +26,13 @@ function createCategorieButton(categories) {
   const h2Element = portfolioSection.querySelector("h2");
   const buttonsDiv = document.createElement("div");
   buttonsDiv.setAttribute("id", "categories-buttons");
+
+  if (window.location.pathname.includes('projects.html')) {
+    return; 
+  }
+
   portfolioSection.insertBefore(buttonsDiv, h2Element.nextSibling);
+
   const buttonAll = createButton("Tous", () => displayWorks(filterWorks(0)));
   buttonsDiv.appendChild(buttonAll);
 

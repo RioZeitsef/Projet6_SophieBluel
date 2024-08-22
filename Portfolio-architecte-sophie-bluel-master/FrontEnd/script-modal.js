@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
-  getWorks(false);
+  getWorks();
   fetchCategories();
 });
+
 
 // création de la modale et de ses boutons de navigation / suppresion
 var modal1 = document.getElementById("modal1");
@@ -146,7 +147,7 @@ document
 
 // application de la methode POST sur le bouton Valider
 
-document.getElementById("uploadForm").onsubmit(function (e) {
+document.getElementById("uploadForm").addEventListener("submit", function(e) {
   e.preventDefault();
 
   const title = document.getElementById("title").value;
@@ -175,8 +176,10 @@ document.getElementById("uploadForm").onsubmit(function (e) {
   })
     .then((response) => {
       if (response.ok) {
-        // return response.json();
         document.getElementById("modal2").style.display = "none";
+        return response.json(); 
+      } else {
+        throw new Error("Erreur lors de l'ajout de l'image");
       }
     })
     .then((data) => {
