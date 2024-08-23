@@ -400,6 +400,10 @@ footer nav ul {
   font-weight: bold;
 }
 
+#modalBack {
+  cursor: pointer;
+}
+
 .modalclose:hover,
 .modalclose:focus {
   color: black;
@@ -420,60 +424,24 @@ footer nav ul {
   border-radius: 20%;
   background-color: black;
   position: relative;
-  top: 15%;
-  left: 75%;
+  top: 20%;
+  left: 70%;
   cursor: pointer;
-  width: 15px;
-  height: 15px;
+  width: 20px;
+  height: 20px;
 }
 
 .fa-trash-can {
   color: white;
   position: relative;
-  padding-left: 9px;
-  bottom: 1px;
+  padding-left: 11px;
 }
 
 /* Modal 2 add new photos on back */
 
-.js-modal-add {
-  margin-top: 10%;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: #fefefe;
-  padding: 20px 40px;
-  border: 1px solid #888;
-  max-width: 500px;
-  height: 660px;
-  border-radius: 10px;
-}
-
-#uploadForm {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 200px;
-}
-
-/* #submitPhotos {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: auto;
-  cursor: pointer;
-  border-radius: 20px;
-  color: white;
-  background-color: #1d6154;
-  border: solid 1px white;
-  padding: 10px 20px;
-  font-family: "Syne";
-  width: 40%;
-  margin-top: 30px;
-} */
-
 .background-add-photos {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: auto;
@@ -498,12 +466,13 @@ footer nav ul {
   display: none;
 }
 
-.fa-image {
-  font-size: 80px;
+.fa-2xl {
+  font-size: 5em;
   color: #b9c5cc;
   position: relative;
   top: 10px;
   left: 1px;
+  padding-top: 10px;
 }
 
 .btn-upload {
@@ -514,7 +483,7 @@ footer nav ul {
   border: solid 1px white;
   padding: 10px 30px;
   font-family: "Syne";
-  width: 100%;
+  width: 50%;
   margin: auto;
   margin-top: 40px;
   margin-bottom: 10px;
