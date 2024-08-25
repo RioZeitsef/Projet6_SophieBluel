@@ -240,6 +240,16 @@ li:hover {
   color: white;
 }
 
+#categories-buttons button.active {
+  cursor: pointer;
+  background-color: #1d6154;
+  color: white;
+}
+.basic-option {
+  color: white;
+  display: none; 
+}
+
 #introduction p {
   margin-bottom: 0.5em;
 }
@@ -524,4 +534,28 @@ footer nav ul {
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   outline: none;
+}
+
+#submitPhotos {
+  position: relative;
+  padding: 10px 40px;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+  border-radius: 20px;
+  color: white;
+  background-color: #A7A7A7;
+  border: solid 1px white;
+  font-family: "Syne";
+  justify-content: center;
+  width: 50%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+
+/* camoufle le form lors de l'upload de l'image */
+.hidden {
+  display: none;
 }

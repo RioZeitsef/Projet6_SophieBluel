@@ -47,19 +47,32 @@ window.addEventListener("keydown", function (e) {
   if (e.key === "Escape" || e.key === "Esc") {
     modal1.style.display = "none";
     modal2.style.display = "none";
+    resetForm();  
   }
 });
 
 // Reset du formulaire lorsque modalBack, modalClose ou window.onclick est appelé
 function resetForm() {
   document.getElementById("uploadForm").reset();
-  document.getElementById("backgroundPhotos").innerHTML = `
-    <span><i class="fa-regular fa-image fa-2xl"></i></span>
-    <button id="uploadButton" class="btn-upload" type="button">+ Ajouter photo</button>
-    <p>jpg. png : 4mo max</p>
-    <input type="file" id="image_uploads" name="image_uploads" accept="image/*" style="display: none;">
-  `;
-  photosInBackground();
+
+  // Réinitialiser l'élément file
+  const fileInput = document.querySelector('input[type="file"]');
+  if (fileInput) {
+    fileInput.value = "";
+  }
+
+  // Supprimer ou masquer l'aperçu de l'image
+  const imgPreview = document.getElementById("image_uploads_preview");
+  if (imgPreview) {
+    imgPreview.remove();
+  }
+
+  const container = document.getElementById("backgroundPhotos");
+  Array.from(container.children).forEach(child => {
+    if (child.classList.contains("hidden")) {
+      child.classList.remove("hidden");
+    }
+  }); 
 }
 
 // Ajout & suppression des images dans la modale
@@ -119,7 +132,7 @@ fetch("http://localhost:5678/api/works")
     console.error("Erreur lors de la récupération des images:", error)
   );
 
-// récupération des catégories pour l'ajout d'images dans la biblio
+// récupération des catégories
 
 function fetchCategories() {
   fetch("http://localhost:5678/api/categories")
@@ -150,11 +163,14 @@ function photosInBackground() {
           const imgURL = URL.createObjectURL(file);
 
           const img = document.createElement("img");
-          img.setAttribute("id", "image_uploads");
+          img.setAttribute("id", "image_uploads_preview");
           img.src = imgURL;
 
           const container = document.getElementById("backgroundPhotos");
-          container.innerHTML = "";
+          Array.from(container.children).forEach(child => {
+            child.classList.add("hidden");
+          });
+
           container.appendChild(img);
           img.style.display = "block";
 
@@ -165,7 +181,6 @@ function photosInBackground() {
   });
 }
 
-
 // application de la methode POST sur le bouton Valider
 
 document.getElementById("uploadForm").addEventListener("submit", function(e) {
@@ -174,18 +189,20 @@ document.getElementById("uploadForm").addEventListener("submit", function(e) {
   const title = document.getElementById("title").value;
   const category = document.getElementById("category").value;
   const imageInput = document.getElementById("image_uploads");
-  
 
   if (!title || !category || !imageInput) {
     console.log(title, category, imageInput);
     alert("Veuillez remplir tous les champs");
     return;
+  } else { 
+    const checkButton = document.getElementById("submitPhotos");
+    checkButton.remove
   }
 
   const formData = new FormData();
   formData.append("title", title);
-  formData.append("categoryId", category);
-  formData.append("imageUrl", imageInput.src);
+  formData.append("category", category);
+  formData.append("image", imageInput.files[0]);
 
   const token = localStorage.getItem("token");
 
@@ -202,6 +219,7 @@ document.getElementById("uploadForm").addEventListener("submit", function(e) {
       if (response.ok) {
         document.getElementById("modal2").style.display = "none";
         document.getElementById("modal1").style.display = "block";
+        resetForm();
         return response.json(); 
      } else {
       return response.json().then((data) => {
@@ -210,7 +228,6 @@ document.getElementById("uploadForm").addEventListener("submit", function(e) {
      }
     })
     .then((data) => {
-      console.log("Image ajoutée avec succès:", data.imageUrl);
       alert("Téléchargement réussi");
       document.getElementById("modal2").style.display = "none";
     })

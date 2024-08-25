@@ -48,7 +48,7 @@
             	<button id="mybtn" style="display: none;"><i class="fa-regular fa-pen-to-square"></i>Modifier</button>
         	</div>
 			<div class="gallery"></div>
-			<div id="modal1" class="modal" aria-hidden="true" aria-modal="true" style="display: none;">
+			<div id="modal1" class="modal" aria-hidden="true" aria-modal="true" role="alertdialog" style="display: none;">
 				<div class="js-modal">
 						<span class="modalclose">x</span>
 						<h3 class="title-modal">Galerie Photos</h3>
@@ -56,7 +56,7 @@
 						<button id="delete-button" style='display: none;'><i class="fa-regular fa-trash-can fa-sm"></i></button>
 				</div>		
 			</div>
-			<div id="modal2" class="modal" aria-hidden="true" aria-modal="true" style="display: none;">
+			<div id="modal2" class="modal" aria-hidden="true" aria-modal="true" role="alertdialog" style="display: none;">
 				<div class="js-modal">
 					<div class="navigation-button">
 						<span class="modalclose">x</span>
@@ -72,19 +72,20 @@
 								id="image_uploads" 
 								name="image_uploads"
 								accept="image/*"
-								style="display: none;">
+								style="display: none;"
+								required>
 						</div>	
 						<div class="title-and-category">
 							<h3>Titre</h3>	
 							<input type="text" id="title" name="title" required>
 							<h3>Catégorie</h3>
-							<label for="category" name="category" required>
-								<select id="category" name="category" required>
-									<option value="" disabled selected></option>
+							<label for="category">
+								<select id="category" name="category" required>	
+									<option class="basic-option" value="" selected>---</option>
 								</select>
 							</label>		
 						</div>	
-						<button type="submit" id="addPhotos">Valider</button>
+						<button id="submitPhotos" type="submit">Valider</button>
 					</form>
 				</div>		
 			</div>

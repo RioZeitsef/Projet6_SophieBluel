@@ -33,22 +33,65 @@ function createCategorieButton(categories) {
 
   portfolioSection.insertBefore(buttonsDiv, h2Element.nextSibling);
 
-  const buttonAll = createButton("Tous", () => displayWorks(filterWorks(0)));
+  // Création du bouton "Tous"
+  const buttonAll = createButton("Tous", () => {
+    displayWorks(filterWorks(0));
+    setActiveButton(buttonAll);
+  });
   buttonsDiv.appendChild(buttonAll);
 
+  // Fonction pour filtrer les travaux
   function filterWorks(categoryId) {
     return categoryId === 0
       ? _works
       : _works.filter((work) => work.category.id === categoryId);
   }
 
+  // Fonction pour mettre à jour le bouton actif
+  function setActiveButton(activeButton) {
+    const buttons = buttonsDiv.querySelectorAll("button");
+    buttons.forEach(button => button.classList.remove("active")); // Retire la classe 'active' de tous les boutons
+    activeButton.classList.add("active"); // Ajoute la classe 'active' au bouton sélectionné
+  }
+
+  // Ajout des boutons de catégorie
   categories.forEach((category) => {
-    const button = createButton(category.name, () =>
-      displayWorks(filterWorks(category.id))
-    );
+    const button = createButton(category.name, () => {
+      displayWorks(filterWorks(category.id));
+      setActiveButton(button);
+    });
     buttonsDiv.appendChild(button);
   });
 }
+
+// function createCategorieButton(categories) {
+//   const portfolioSection = document.getElementById("portfolio");
+//   const h2Element = portfolioSection.querySelector("h2");
+//   const buttonsDiv = document.createElement("div");
+//   buttonsDiv.setAttribute("id", "categories-buttons");
+
+//   if (window.location.pathname.includes('projects.html')) {
+//     return; 
+//   }
+
+//   portfolioSection.insertBefore(buttonsDiv, h2Element.nextSibling);
+
+//   const buttonAll = createButton("Tous", () => displayWorks(filterWorks(0)));
+//   buttonsDiv.appendChild(buttonAll);
+
+//   function filterWorks(categoryId) {
+//     return categoryId === 0
+//       ? _works
+//       : _works.filter((work) => work.category.id === categoryId);
+//   }
+
+//   categories.forEach((category) => {
+//     const button = createButton(category.name, () =>
+//       displayWorks(filterWorks(category.id))
+//     );
+//     buttonsDiv.appendChild(button);
+//   });
+// }
 
 function initCategories(works) {
   _categories = Array.from(new Set(works.map((work) => work.category.id))).map(
