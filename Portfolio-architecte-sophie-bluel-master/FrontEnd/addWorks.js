@@ -11,6 +11,13 @@ function getWorks() {
     });
 }
 
+  // Fonction pour filtrer les travaux
+  function filterWorks(categoryId) {
+    return categoryId === 0
+      ? _works
+      : _works.filter((work) => work.category.id === categoryId);
+  }
+
 function createButton(text, onClick) {
   const button = document.createElement("button");
   button.setAttribute("class", "buttonBase");
@@ -33,26 +40,33 @@ function createCategorieButton(categories) {
 
   portfolioSection.insertBefore(buttonsDiv, h2Element.nextSibling);
 
+  
+  // Fonction pour définir le bouton actif
+function setActiveButton(activeButton) {
+  const buttons = buttonsDiv.querySelectorAll("button");
+  buttons.forEach(button => {
+    button.classList.remove("active");
+  });
+  activeButton.classList.add("active");
+}
+
+            // // Fonction pour mettre à jour le bouton actif
+  // function setActiveButton(activeButton) {
+  //   const buttons = buttonsDiv.querySelectorAll("button");
+  //   buttons.forEach(button => button.classList.remove("active")); // Retire la classe 'active' de tous les boutons
+  //   activeButton.classList.add("active"); // Ajoute la classe 'active' au bouton sélectionné
+  // }
+
   // Création du bouton "Tous"
-  const buttonAll = createButton("Tous", () => {
+   const buttonAll = createButton("Tous", () => {
     displayWorks(filterWorks(0));
     setActiveButton(buttonAll);
   });
   buttonsDiv.appendChild(buttonAll);
 
-  // Fonction pour filtrer les travaux
-  function filterWorks(categoryId) {
-    return categoryId === 0
-      ? _works
-      : _works.filter((work) => work.category.id === categoryId);
-  }
-
-  // Fonction pour mettre à jour le bouton actif
-  function setActiveButton(activeButton) {
-    const buttons = buttonsDiv.querySelectorAll("button");
-    buttons.forEach(button => button.classList.remove("active")); // Retire la classe 'active' de tous les boutons
-    activeButton.classList.add("active"); // Ajoute la classe 'active' au bouton sélectionné
-  }
+  document.addEventListener("DOMContentLoaded", () => {
+    setActiveButton(buttonAll);
+  });
 
   // Ajout des boutons de catégorie
   categories.forEach((category) => {
@@ -63,35 +77,6 @@ function createCategorieButton(categories) {
     buttonsDiv.appendChild(button);
   });
 }
-
-// function createCategorieButton(categories) {
-//   const portfolioSection = document.getElementById("portfolio");
-//   const h2Element = portfolioSection.querySelector("h2");
-//   const buttonsDiv = document.createElement("div");
-//   buttonsDiv.setAttribute("id", "categories-buttons");
-
-//   if (window.location.pathname.includes('projects.html')) {
-//     return; 
-//   }
-
-//   portfolioSection.insertBefore(buttonsDiv, h2Element.nextSibling);
-
-//   const buttonAll = createButton("Tous", () => displayWorks(filterWorks(0)));
-//   buttonsDiv.appendChild(buttonAll);
-
-//   function filterWorks(categoryId) {
-//     return categoryId === 0
-//       ? _works
-//       : _works.filter((work) => work.category.id === categoryId);
-//   }
-
-//   categories.forEach((category) => {
-//     const button = createButton(category.name, () =>
-//       displayWorks(filterWorks(category.id))
-//     );
-//     buttonsDiv.appendChild(button);
-//   });
-// }
 
 function initCategories(works) {
   _categories = Array.from(new Set(works.map((work) => work.category.id))).map(

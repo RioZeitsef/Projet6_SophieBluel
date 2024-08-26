@@ -490,7 +490,7 @@ footer nav ul {
   border-radius: 20px;
   color: #306685;
   background-color: #cbd6dc;
-  border: solid 1px white;
+  border: none;
   padding: 10px 30px;
   font-family: "Syne";
   width: 50%;
@@ -534,6 +534,20 @@ footer nav ul {
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   outline: none;
+  cursor: pointer;
+  -webkit-appearance: none; /* @affected Chrome */
+  -moz-appearance: none; /* @affected Firefox */
+}
+
+select option[value="1"] {
+  opacity: 0;
+}
+
+.fa-angle-down {
+  position: relative;
+  left: 90%;
+  bottom: 35px;
+  cursor: pointer;
 }
 
 #submitPhotos {
