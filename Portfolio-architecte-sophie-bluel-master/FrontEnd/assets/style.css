@@ -540,7 +540,7 @@ footer nav ul {
 }
 
 select option[value="1"] {
-  opacity: 0;
+  color: white;
 }
 
 .fa-angle-down {
