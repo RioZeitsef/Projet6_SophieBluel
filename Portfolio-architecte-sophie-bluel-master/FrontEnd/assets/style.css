@@ -573,3 +573,7 @@ select option[value="1"] {
 .hidden {
   display: none;
 }
+
+input:valid {
+  
+}

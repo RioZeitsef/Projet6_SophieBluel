@@ -73,6 +73,10 @@ function resetForm() {
       child.classList.remove("hidden");
     }
   }); 
+
+  const submitButton = document.getElementById("submitPhotos");
+  submitButton.style.backgroundColor = "#A7A7A7";
+  submitButton.disabled = true;
 }
 
 // Ajout & suppression des images dans la modale
@@ -237,4 +241,27 @@ document.getElementById("uploadForm").addEventListener("submit", function(e) {
     });
 });
 
+function validationForm() {
+const titleValid = document.getElementById('title').validity.valid
+const categoryValid = document.getElementById('category').validity.valid
+const imageUploadValid = document.getElementById('image_uploads').validity.valid
+const submitButton = document.getElementById('submitPhotos')
+
+console.log(imageUploadValid ,titleValid, categoryValid)
+
+  if (titleValid && categoryValid && imageUploadValid) {
+    
+    submitButton.disabled = false;
+    submitButton.style.backgroundColor = "#1d6154";
+  } else {
+    submitButton.disabled = true;
+  }
+}
+
+document.getElementById('image_uploads').addEventListener('input', validationForm);
+document.getElementById('title').addEventListener('input', validationForm);
+document.getElementById('category').addEventListener('input', validationForm);
+
+
 photosInBackground();
+validationForm();
