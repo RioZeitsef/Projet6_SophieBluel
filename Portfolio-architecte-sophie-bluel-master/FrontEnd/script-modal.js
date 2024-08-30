@@ -1,8 +1,3 @@
-document.addEventListener("DOMContentLoaded", () => {
-  getWorks();
-  fetchCategories();
-});
-
 
 // création de la modale et de ses boutons de navigation / suppresion
 var modal1 = document.getElementById("modal1");
@@ -114,6 +109,7 @@ fetch("http://localhost:5678/api/works")
         })
           .then((response) => {
             if (response.ok) {
+              document.getElementById("modal1").style.display = "block";
               imgWrapper.remove();
             } else {
               alert(
@@ -221,6 +217,7 @@ document.getElementById("uploadForm").addEventListener("submit", function(e) {
   })
     .then((response) => {
       if (response.ok) {
+        console.log("Téléchargement réussi");
         document.getElementById("modal2").style.display = "none";
         document.getElementById("modal1").style.display = "block";
         resetForm();
@@ -232,8 +229,9 @@ document.getElementById("uploadForm").addEventListener("submit", function(e) {
      }
     })
     .then((data) => {
+      console.log("montre moi")
       alert("Téléchargement réussi");
-      document.getElementById("modal2").style.display = "none";
+      // document.getElementById("modal2").style.display = "none";
     })
     .catch((error) => {
       console.error("Erreur lors du téléchargement de l'image:", error);
@@ -245,18 +243,29 @@ function validationForm() {
 const titleValid = document.getElementById('title').validity.valid
 const categoryValid = document.getElementById('category').validity.valid
 const imageUploadValid = document.getElementById('image_uploads').validity.valid
-const submitButton = document.getElementById('submitPhotos')
+
 
 console.log(imageUploadValid ,titleValid, categoryValid)
 
-  if (titleValid && categoryValid && imageUploadValid) {
+ActivateSubmitForm(imageUploadValid && titleValid && categoryValid);
+  
+  // submitButton.onclick = function () {
+  //   document.getElementById('modal1').style.display = "block";
+  // };
+}
+
+function ActivateSubmitForm(activated) {
+  const submitButton = document.getElementById('submitPhotos')
+  if (activated) {
     
     submitButton.disabled = false;
     submitButton.style.backgroundColor = "#1d6154";
   } else {
     submitButton.disabled = true;
   }
-}
+}; 
+
+
 
 document.getElementById('image_uploads').addEventListener('input', validationForm);
 document.getElementById('title').addEventListener('input', validationForm);
@@ -264,4 +273,6 @@ document.getElementById('category').addEventListener('input', validationForm);
 
 
 photosInBackground();
-validationForm();
+document.querySelectorAll("#uploadForm input, select").forEach(el => el.addEventListener("change" , e => validationForm())); 
+fetchCategories();
+

@@ -568,12 +568,7 @@ select option[value="1"] {
   margin-bottom: 20px;
 }
 
-
 /* camoufle le form lors de l'upload de l'image */
 .hidden {
   display: none;
-}
-
-input:valid {
-  
 }
