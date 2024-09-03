@@ -50,13 +50,6 @@ function setActiveButton(activeButton) {
   activeButton.classList.add("active");
 }
 
-            // // Fonction pour mettre à jour le bouton actif
-  // function setActiveButton(activeButton) {
-  //   const buttons = buttonsDiv.querySelectorAll("button");
-  //   buttons.forEach(button => button.classList.remove("active")); // Retire la classe 'active' de tous les boutons
-  //   activeButton.classList.add("active"); // Ajoute la classe 'active' au bouton sélectionné
-  // }
-
   // Création du bouton "Tous"
    const buttonAll = createButton("Tous", () => {
     displayWorks(filterWorks(0));

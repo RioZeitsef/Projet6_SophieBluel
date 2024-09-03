@@ -95,7 +95,7 @@ fetch("http://localhost:5678/api/works")
       imgElement.src = image.imageUrl;
 
       const hiddenDeleteButton = document.getElementById("delete-button");
-      const deleteButton = hiddenDeleteButton.cloneNode(true); // Crée le bouton de suppression
+      const deleteButton = hiddenDeleteButton.cloneNode(true);
       deleteButton.style.display = "block";
 
       deleteButton.addEventListener("click",  function () {
@@ -191,7 +191,6 @@ document.getElementById("uploadForm").addEventListener("submit", function(e) {
   const imageInput = document.getElementById("image_uploads");
 
   if (!title || !category || !imageInput) {
-    console.log(title, category, imageInput);
     alert("Veuillez remplir tous les champs");
     return;
   } else { 
@@ -206,8 +205,6 @@ document.getElementById("uploadForm").addEventListener("submit", function(e) {
 
   const token = localStorage.getItem("token");
 
-  console.log(title, category, imageInput.src);
-
   fetch("http://localhost:5678/api/works", {
     method: "POST",
     body: formData,
@@ -217,7 +214,6 @@ document.getElementById("uploadForm").addEventListener("submit", function(e) {
   })
     .then((response) => {
       if (response.ok) {
-        console.log("Téléchargement réussi");
         document.getElementById("modal2").style.display = "none";
         document.getElementById("modal1").style.display = "block";
         resetForm();
@@ -229,9 +225,7 @@ document.getElementById("uploadForm").addEventListener("submit", function(e) {
      }
     })
     .then((data) => {
-      console.log("montre moi")
       alert("Téléchargement réussi");
-      // document.getElementById("modal2").style.display = "none";
       const modalImagesContainer = document.querySelector(".js-modal .images-container");
       if (!modalImagesContainer) {
         console.error("Element .images-container not found in the modal");
@@ -286,9 +280,6 @@ console.log(imageUploadValid ,titleValid, categoryValid)
 
 ActivateSubmitForm(imageUploadValid && titleValid && categoryValid);
   
-  // submitButton.onclick = function () {
-  //   document.getElementById('modal1').style.display = "block";
-  // };
 }
 
 function ActivateSubmitForm(activated) {
