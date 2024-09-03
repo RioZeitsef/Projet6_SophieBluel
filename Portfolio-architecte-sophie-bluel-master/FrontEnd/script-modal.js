@@ -98,7 +98,7 @@ fetch("http://localhost:5678/api/works")
       const deleteButton = hiddenDeleteButton.cloneNode(true); // Crée le bouton de suppression
       deleteButton.style.display = "block";
 
-      deleteButton.onclick = function () {
+      deleteButton.addEventListener("click",  function () {
         const id = image.id;
         const token = localStorage.getItem("token");
         fetch(`http://localhost:5678/api/works/${id}`, {
@@ -120,7 +120,7 @@ fetch("http://localhost:5678/api/works")
           .catch((error) => {
             console.error("Erreur lors de la suppression de l'image:", error);
           });
-      };
+      });
       imagesContainer.appendChild(imgWrapper);
       imgWrapper.appendChild(deleteButton);
       imgWrapper.appendChild(imgElement);
@@ -232,6 +232,43 @@ document.getElementById("uploadForm").addEventListener("submit", function(e) {
       console.log("montre moi")
       alert("Téléchargement réussi");
       // document.getElementById("modal2").style.display = "none";
+      const modalImagesContainer = document.querySelector(".js-modal .images-container");
+      if (!modalImagesContainer) {
+        console.error("Element .images-container not found in the modal");
+        return;
+      }
+
+      const gallery = document.querySelector("#portfolio .gallery");
+      const figure = document.createElement("figure");
+      const figcaption = document.createElement("figcaption");
+      figcaption.textContent = data.title;
+
+      const img = document.createElement("img");
+      img.src = data.imageUrl;
+      img.alt = data.title;
+      
+
+      figure.appendChild(img);
+      figure.appendChild(figcaption);
+      gallery.appendChild(figure);
+  
+      const imgWrapper = document.createElement("div");
+      imgWrapper.className = "image-wrapper";
+      imgWrapper.setAttribute("data-id", data.id);
+  
+      const modalImgElement = document.createElement("img");
+      modalImgElement.src = data.imageUrl;
+      modalImgElement.alt = data.title;
+  
+      const deleteButton = document.getElementById("delete-button").cloneNode(true);
+      deleteButton.style.display = "block";
+      deleteButton.onclick = function () {
+        
+      };
+  
+      imgWrapper.appendChild(deleteButton);
+      imgWrapper.appendChild(modalImgElement);
+      modalImagesContainer.appendChild(imgWrapper);
     })
     .catch((error) => {
       console.error("Erreur lors du téléchargement de l'image:", error);
@@ -264,8 +301,6 @@ function ActivateSubmitForm(activated) {
     submitButton.disabled = true;
   }
 }; 
-
-
 
 document.getElementById('image_uploads').addEventListener('input', validationForm);
 document.getElementById('title').addEventListener('input', validationForm);
