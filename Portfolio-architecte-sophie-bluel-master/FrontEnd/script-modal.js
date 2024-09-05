@@ -111,6 +111,13 @@ fetch("http://localhost:5678/api/works")
             if (response.ok) {
               document.getElementById("modal1").style.display = "block";
               imgWrapper.remove();
+            
+              const projectImages = document.querySelectorAll(".gallery img");
+              projectImages.forEach((projectImage) => {
+                if (projectImage.src === image.imageUrl) {
+                projectImage.closest("figure").remove();
+                }
+              });
             } else {
               alert(
                 "Une erreur est survenue lors de la suppression de l'image"

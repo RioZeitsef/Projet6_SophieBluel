@@ -33,14 +33,10 @@ function createCategorieButton(categories) {
   const h2Element = portfolioSection.querySelector("h2");
   const buttonsDiv = document.createElement("div");
   buttonsDiv.setAttribute("id", "categories-buttons");
-
   if (window.location.pathname.includes('projects.html')) {
     return; 
   }
-
   portfolioSection.insertBefore(buttonsDiv, h2Element.nextSibling);
-
-  
   // Fonction pour définir le bouton actif
 function setActiveButton(activeButton) {
   const buttons = buttonsDiv.querySelectorAll("button");
@@ -49,7 +45,6 @@ function setActiveButton(activeButton) {
   });
   activeButton.classList.add("active");
 }
-
   // Création du bouton "Tous"
    const buttonAll = createButton("Tous", () => {
     displayWorks(filterWorks(0));
