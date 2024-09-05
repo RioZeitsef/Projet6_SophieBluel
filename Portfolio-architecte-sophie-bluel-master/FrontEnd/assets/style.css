@@ -447,6 +447,28 @@ footer nav ul {
   padding-left: 11px;
 }
 
+.header-login {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+#edition-mode {
+  display: flex;
+  justify-content: center;
+  padding: 15px 0px;
+  width: 100%;
+  color: white;
+  background-color: black;
+}
+
 /* Modal 2 add new photos on back */
 
 .background-add-photos {
